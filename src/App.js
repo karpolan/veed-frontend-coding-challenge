@@ -1,4 +1,4 @@
-import { endOfDay, format, subDays } from 'date-fns';
+import { FavoriteReposProvider } from './components/FavoriteReposContext';
 import FavoriteRepos from './views/FavoriteRepos';
 import LatestReleases from './views/LatestReleases';
 
@@ -6,10 +6,8 @@ import LatestReleases from './views/LatestReleases';
  * Main Application component
  */
 const App = () => {
-  console.log('date', format(endOfDay(subDays(new Date(), 7)), 'yyyy-MM-dd'));
-
   return (
-    <>
+    <FavoriteReposProvider>
       <header>GitHub Trends</header>
       <main>
         <FavoriteRepos />
@@ -21,7 +19,7 @@ const App = () => {
           KARPOLAN
         </a>
       </footer>
-    </>
+    </FavoriteReposProvider>
   );
 };
 

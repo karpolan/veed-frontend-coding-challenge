@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { localStorageSet, LOCAL_STORAGE_FAVORITES, getFavoriteRepos } from '../utils/localStorage';
 
 /**
  * Hook to store any kind of data (number, strings, object, arrays, and so on) into local storage under specific Key
@@ -34,47 +35,26 @@ export function useLocalStorage(key, defaultValue = '') {
 }
 
 /**
- * Hook to manipulate Favorite Repositories using Local Storage
- * @returns {object} - list of favorite repositories, setter methods to Add and Remove favorite items
+ * Hook to manipulate Favorite Repositories using Local Storage by Ids
+ * @deprecated Hook works well, but unfortunately other components are not updated when localStorage is changed :( So now we use Context Provider instead.
+ * @returns {object} - getter for list of Ids for favorite repositories, setter methods to Add and Remove favorite repo by Id
  */
 export function useFavoriteRepos() {
-  const [repos, setLocalStorageValue] = useLocalStorage('favoriteRepos', []);
-  const [favoriteRepos, setFavoriteRepos] = useState(repos);
+  const [favoriteRepos, setFavoriteRepos] = useState(getFavoriteRepos());
 
-  const addFavoriteRepo = (repo) => {
-    const newFavoriteRepos = [...favoriteRepos, repo];
-    setFavoriteRepos(newFavoriteRepos);
-    setLocalStorageValue(newFavoriteRepos);
+  const addFavoriteRepo = (repoId) => {
+    const oldFavorites = getFavoriteRepos();
+    const newFavorites = [...new Set([...oldFavorites, repoId])]; // remove duplicates
+    localStorageSet(LOCAL_STORAGE_FAVORITES, newFavorites);
+    setFavoriteRepos(newFavorites);
   };
 
-  const removeFavoriteRepo = (repo) => {
-    const newFavoriteRepos = favoriteRepos.filter((current) => current.id !== repo.id);
-    setFavoriteRepos(newFavoriteRepos);
-    setLocalStorageValue(newFavoriteRepos);
+  const removeFavoriteRepo = (repoId) => {
+    const oldFavorites = getFavoriteRepos();
+    const newFavorites = oldFavorites.filter((current) => String(current) !== String(repoId));
+    localStorageSet(LOCAL_STORAGE_FAVORITES, newFavorites);
+    setFavoriteRepos(newFavorites);
   };
 
   return { favoriteRepos, addFavoriteRepo, removeFavoriteRepo };
-}
-
-/**
- * Hook to manipulate Favorite Repositories using Local Storage by Ids
- * @returns {object} - list of Ids for favorite repositories, setter methods to Add and Remove favorite items by Id
- */
-export function useFavoriteRepoIds() {
-  const [repos, setLocalStorageValue] = useLocalStorage('favoriteRepoIds', []);
-  const [favoriteRepos, setFavoriteRepos] = useState(repos);
-
-  const addFavoriteRepoId = (repoId) => {
-    const newFavoriteRepos = [...new Set([...favoriteRepos, repoId])]; // remove duplicates
-    setFavoriteRepos(newFavoriteRepos);
-    setLocalStorageValue(newFavoriteRepos);
-  };
-
-  const removeFavoriteRepoId = (repoId) => {
-    const newFavoriteRepos = favoriteRepos.filter((current) => String(current) !== String(repoId));
-    setFavoriteRepos(newFavoriteRepos);
-    setLocalStorageValue(newFavoriteRepos);
-  };
-
-  return { favoriteRepoIds, addFavoriteRepoId, removeFavoriteRepoId };
 }

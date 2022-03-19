@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLocalStorage } from '../hooks';
 import Filter from '../components/Filter';
 import FilteredRepoList from '../components/FilteredRepoList';
 
@@ -6,9 +6,9 @@ import FilteredRepoList from '../components/FilteredRepoList';
  * Renders "Latest GitHub Releases" view
  */
 const LatestReleases = () => {
-  const [order, setOrder] = useState('desc');
-  const [sort, setSort] = useState('stars');
-  const [textSearch, setTextSearch] = useState('');
+  const [order, setOrder] = useLocalStorage('filter.order', 'desc');
+  const [sort, setSort] = useLocalStorage('filter.sort', 'stars');
+  const [textSearch, setTextSearch] = useLocalStorage('filter.textSearch', '');
 
   //   const onListItemFavoriteChange = (item) => {
   //     item.isFavorite = !item.isFavorite;

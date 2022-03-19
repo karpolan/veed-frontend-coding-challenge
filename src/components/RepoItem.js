@@ -1,9 +1,18 @@
 import PropTypes from 'prop-types';
+import { useCallback } from 'react';
+import { useFavoriteRepos } from './FavoriteReposContext';
 
 /**
  * Renders Single Repository item
  */
 const RepoItem = ({ id, name, description, url, language, homepage, full_name, html_url, stargazers_count }) => {
+  const { favoriteRepos, addFavoriteRepo, removeFavoriteRepo } = useFavoriteRepos();
+  const isFavorite = favoriteRepos?.includes(id);
+
+  const onFavoriteAddClick = useCallback(() => addFavoriteRepo(id), [id, addFavoriteRepo]);
+
+  const onFavoriteRemoveClick = useCallback(() => removeFavoriteRepo(id), [id, removeFavoriteRepo]);
+
   return (
     <div>
       <h3>{name}</h3>
@@ -13,6 +22,12 @@ const RepoItem = ({ id, name, description, url, language, homepage, full_name, h
       <a href={html_url}>{html_url}</a>
       <br />
       {homepage && <a href={homepage}>Homepage</a>}
+
+      {isFavorite ? (
+        <button onClick={onFavoriteRemoveClick}>Remove from Favorites</button>
+      ) : (
+        <button onClick={onFavoriteAddClick}>Add to Favorites</button>
+      )}
     </div>
   );
 };

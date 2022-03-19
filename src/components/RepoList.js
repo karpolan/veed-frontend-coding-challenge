@@ -6,11 +6,15 @@ import RepoItem from './RepoItem';
  * @param {array} repos - list of repositories
  */
 const RepoList = ({ repos }) => {
-  return repos?.length ? repos?.map((repo) => <RepoItem key={repo.id} {...repo} />) : <p>No repositories found</p>;
+  return !repos?.length ? (
+    <p>No repositories found...</p>
+  ) : (
+    repos?.map((current) => <RepoItem key={current.id} {...current} />)
+  );
 };
 
 RepoList.propTypes = {
-  repos: PropTypes.array,
+  repos: PropTypes.array.isRequired,
 };
 
 export default RepoList;

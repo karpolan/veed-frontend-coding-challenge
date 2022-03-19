@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useGitHubRepos } from '../hooks';
+import { useGitHubSearchRepos } from '../hooks';
 import RepoList from './RepoList';
 
 /**
@@ -10,12 +10,11 @@ import RepoList from './RepoList';
  * @param {string} textSearch - text to search in names and descriptions to filter the list of repos
  */
 const FilteredRepoList = ({ order, sort, textSearch }) => {
-  const { repos, error, loading } = useGitHubRepos({ sort, order });
+  const { repos, error, loading } = useGitHubSearchRepos({ sort, order });
   const [filteredRepos, setFilteredRepos] = useState(repos);
 
   useEffect(() => {
     const textSearchLowerCase = textSearch?.toLowerCase();
-    console.log('textSearchLowerCase:', textSearchLowerCase);
     setFilteredRepos(
       textSearch
         ? repos.filter(

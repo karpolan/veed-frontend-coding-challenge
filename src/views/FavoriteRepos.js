@@ -1,17 +1,19 @@
 import React from 'react';
-import { useFavoriteRepos } from '../hooks';
-import RepoList from '../components/RepoList';
+import { useFavoriteRepos } from '../components/FavoriteReposContext';
+import AsyncRepoList from '../components/AsyncRepoList';
 
 /**
  * Renders "Favorite Repos" view
  */
 const FavoriteRepos = () => {
-  const { favoriteRepos, addFavoriteRepo, removeFavoriteRepo } = useFavoriteRepos();
+  const { favoriteRepos } = useFavoriteRepos();
+
+  console.log('favoriteRepos:', favoriteRepos);
 
   return (
     <div>
       <h2>Favorite GitHub repositories</h2>
-      {favoriteRepos?.length ? <RepoList repos={favoriteRepos} /> : <p>No repositories found</p>}
+      {!favoriteRepos?.length ? <p>There is no favorite repositories...</p> : <AsyncRepoList repoIds={favoriteRepos} />}
     </div>
   );
 };

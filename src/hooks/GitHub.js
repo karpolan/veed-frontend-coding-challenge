@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { endOfDay, format, subDays } from 'date-fns';
 
 const PERIOD_IN_DAYS = 7;
-const ENDPOINT_REPOSITORIES = 'https://api.github.com/search/repositories';
-// const ENDPOINT = https://api.github.com/search/repositories?q=created:%3E2017-01-10&sort=stars&order=desc
 
 /**
  * Helper to get date before given of days
@@ -21,7 +19,7 @@ function getDateBefore(daysBefore = PERIOD_IN_DAYS) {
  * @param {string} order - sorting order for GitHub API, by default it is 'desc'
  * @returns {object} - list of repositories, error and loading state
  */
-export function useGitHubRepos({ query = `created:>${getDateBefore()}`, sort = 'stars', order = 'desc' } = {}) {
+export function useGitHubSearchRepos({ query = `created:>${getDateBefore()}`, sort = 'stars', order = 'desc' } = {}) {
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,7 +30,7 @@ export function useGitHubRepos({ query = `created:>${getDateBefore()}`, sort = '
 
     const fetchData = async () => {
       try {
-        const url = `${ENDPOINT_REPOSITORIES}?q=${query}&sort=${sort}&order=${order}&per_page=100`;
+        const url = `https://api.github.com/search/repositories?q=${query}&sort=${sort}&order=${order}&per_page=100`;
         console.log('API call to:', url);
         const response = await fetch(url);
         const json = await response.json();
@@ -49,4 +47,39 @@ export function useGitHubRepos({ query = `created:>${getDateBefore()}`, sort = '
   }, [query, sort, order]);
 
   return { repos, error, loading };
+}
+
+/**
+ * Returns singe repository for given id
+ * @param {number} id - id of repository to fetch
+ * @returns {object} - repository data object, error and loading state
+ */
+export function useGitHubSingleRepo(id) {
+  const [repo, setRepo] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+
+    const fetchData = async () => {
+      try {
+        const url = `https://api.github.com/repositories/${id}`;
+        console.log('API call to:', url);
+        const response = await fetch(url);
+        const json = await response.json();
+        // console.log('API json', json);
+        setRepo(json);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  return { repo, error, loading };
 }
