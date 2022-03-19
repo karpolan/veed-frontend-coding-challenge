@@ -4,6 +4,7 @@
   "version": "0.1.2",
   "private": true,
   "dependencies": {
+    "date-fns": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
@@ -12,7 +13,9 @@
   "devDependencies": {
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
-    "@testing-library/user-event": "latest"
+    "@testing-library/user-event": "latest",
+    "prettier": "latest",
+    "prop-types": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
