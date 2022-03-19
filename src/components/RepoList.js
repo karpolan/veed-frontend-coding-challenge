@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import RepoItem from './RepoItem';
 
@@ -7,7 +6,7 @@ import RepoItem from './RepoItem';
  * @param {array} repos - list of repositories
  */
 const RepoList = ({ repos }) => {
-  return repos?.map((repo) => <RepoItem key={repo.id} {...repo} />) ?? <p>No repositories found</p>;
+  return repos?.length ? repos?.map((repo) => <RepoItem key={repo.id} {...repo} />) : <p>No repositories found</p>;
 };
 
 RepoList.propTypes = {

@@ -32,7 +32,9 @@ export function useGitHubRepos({ query = `created:>${getDateBefore()}`, sort = '
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`${ENDPOINT_REPOSITORIES}?q=${query}&sort=${sort}&order=${order}`);
+        const url = `${ENDPOINT_REPOSITORIES}?q=${query}&sort=${sort}&order=${order}&per_page=100`;
+        console.log('API call to:', url);
+        const response = await fetch(url);
         const json = await response.json();
         // console.log('API json', json);
         setRepos(json.items);
