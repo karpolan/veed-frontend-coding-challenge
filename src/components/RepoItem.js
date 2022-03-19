@@ -30,9 +30,9 @@ const RepoItem = ({ id, name, description, url, language, homepage, full_name, h
       )}
 
       {isFavorite ? (
-        <button onClick={onFavoriteRemoveClick}>Favorite</button>
+        <button onClick={onFavoriteRemoveClick}>Remove form Favorites</button>
       ) : (
-        <button onClick={onFavoriteAddClick}>Un-Favorite</button>
+        <button onClick={onFavoriteAddClick}>Add to Favorite</button>
       )}
     </div>
   );
