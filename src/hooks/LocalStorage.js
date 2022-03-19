@@ -16,7 +16,7 @@ export function useLocalStorage(key, defaultValue = '') {
       }
       return JSON.parse(serializedValue);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return defaultValue;
     }
   });
@@ -27,7 +27,7 @@ export function useLocalStorage(key, defaultValue = '') {
       localStorage.setItem(key, serializedValue);
       setValue(value);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

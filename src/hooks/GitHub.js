@@ -31,7 +31,7 @@ export function useGitHubSearchRepos({ query = `created:>${getDateBefore()}`, so
     const fetchData = async () => {
       try {
         const url = `https://api.github.com/search/repositories?q=${query}&sort=${sort}&order=${order}&per_page=100`;
-        console.log('API call to:', url);
+        // console.log('API call to:', url);
         const response = await fetch(url);
         const json = await response.json();
         // console.log('API json', json);
@@ -57,7 +57,7 @@ export function useGitHubSearchRepos({ query = `created:>${getDateBefore()}`, so
 export function useGitHubSingleRepo(id) {
   const [repo, setRepo] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Loading by default
 
   useEffect(() => {
     setLoading(true);
@@ -66,7 +66,7 @@ export function useGitHubSingleRepo(id) {
     const fetchData = async () => {
       try {
         const url = `https://api.github.com/repositories/${id}`;
-        console.log('API call to:', url);
+        // console.log('API call to:', url);
         const response = await fetch(url);
         const json = await response.json();
         // console.log('API json', json);

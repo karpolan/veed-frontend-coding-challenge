@@ -8,8 +8,6 @@ import AsyncRepoList from '../components/AsyncRepoList';
 const FavoriteRepos = () => {
   const { favoriteRepos } = useFavoriteRepos();
 
-  console.log('favoriteRepos:', favoriteRepos);
-
   return (
     <div>
       <h2>Favorite GitHub repositories</h2>

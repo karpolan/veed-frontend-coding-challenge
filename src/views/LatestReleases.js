@@ -24,7 +24,6 @@ const LatestReleases = () => {
 
   const onTextSearchChange = (event) => {
     setTextSearch(event?.target?.value);
-    console.log('onTextSearchChange() - value:', event?.target?.value);
   };
 
   return (

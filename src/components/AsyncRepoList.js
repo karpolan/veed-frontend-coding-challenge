@@ -6,7 +6,11 @@ import AsyncRepoItem from './AsyncRepoItem';
  * @param {array} repoIds - list of repository's Ids
  */
 const AsyncRepoList = ({ repoIds }) => {
-  return !repoIds?.length ? <p>No repositories found...</p> : repoIds?.map((current) => <AsyncRepoItem id={current} />);
+  return !repoIds?.length ? (
+    <p>No repositories found...</p>
+  ) : (
+    repoIds?.map((current) => <AsyncRepoItem key={current} id={current} />)
+  );
 };
 
 AsyncRepoList.propTypes = {

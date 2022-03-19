@@ -18,15 +18,21 @@ const RepoItem = ({ id, name, description, url, language, homepage, full_name, h
       <h3>{name}</h3>
       <h5>Stars {stargazers_count}</h5>
       <p>{description}</p>
-      <p>{language}</p>
-      <a href={html_url}>{html_url}</a>
-      <br />
-      {homepage && <a href={homepage}>Homepage</a>}
+      {language && <p>Language: {language}</p>}
+      <p>
+        <a href={html_url}>{html_url}</a>
+      </p>
+
+      {homepage && (
+        <p>
+          <a href={homepage}>Homepage</a>
+        </p>
+      )}
 
       {isFavorite ? (
-        <button onClick={onFavoriteRemoveClick}>Remove from Favorites</button>
+        <button onClick={onFavoriteRemoveClick}>Favorite</button>
       ) : (
-        <button onClick={onFavoriteAddClick}>Add to Favorites</button>
+        <button onClick={onFavoriteAddClick}>Un-Favorite</button>
       )}
     </div>
   );
@@ -34,14 +40,14 @@ const RepoItem = ({ id, name, description, url, language, homepage, full_name, h
 
 RepoItem.propTypes = {
   id: PropTypes.number.isRequired,
+  html_url: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   stargazers_count: PropTypes.number,
   language: PropTypes.string,
   homepage: PropTypes.string,
   full_name: PropTypes.string,
-  html_url: PropTypes.string,
 };
 
 export default RepoItem;

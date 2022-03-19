@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import RepoItem from './RepoItem';
 
 /**
- * Renders as list/table if given repos
+ * Renders list of given repos
  * @param {array} repos - list of repositories
  */
 const RepoList = ({ repos }) => {
