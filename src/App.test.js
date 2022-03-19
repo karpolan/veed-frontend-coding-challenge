@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders self', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const header = screen.getByText(/GitHub/i);
+  expect(header).toBeInTheDocument();
+  const footer = screen.getByText(/Copyright/i);
+  expect(footer).toBeInTheDocument();
 });
