@@ -31,10 +31,8 @@ export function useGitHubSearchRepos({ query = `created:>${getDateBefore()}`, so
     const fetchData = async () => {
       try {
         const url = `https://api.github.com/search/repositories?q=${query}&sort=${sort}&order=${order}&per_page=100`;
-        // console.log('API call to:', url);
         const response = await fetch(url);
         const json = await response.json();
-        // console.log('API json', json);
         setRepos(json.items);
       } catch (error) {
         setError(error);
@@ -66,10 +64,8 @@ export function useGitHubSingleRepo(id) {
     const fetchData = async () => {
       try {
         const url = `https://api.github.com/repositories/${id}`;
-        // console.log('API call to:', url);
         const response = await fetch(url);
         const json = await response.json();
-        // console.log('API json', json);
         setRepo(json);
       } catch (error) {
         setError(error);

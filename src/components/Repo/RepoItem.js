@@ -13,12 +13,14 @@ const RepoItem = ({ description, forks_count, html_url, id, language, name, star
   const { favoriteRepos, addFavoriteRepo, removeFavoriteRepo } = useFavoriteRepos();
   const isFavorite = favoriteRepos?.includes(id);
 
-  const dateUpdated = new Date(updated_at);
+  const dateUpdated = updated_at && new Date(updated_at);
   const dateNow = new Date();
   const updatedToRender =
-    differenceInDays(dateUpdated, dateNow) < 30
+    differenceInDays(dateNow, dateUpdated) < 30
       ? formatDistanceToNow(dateUpdated, { addSuffix: true })
-      : format(dateUpdated, 'MMM d, yyyy');
+      : dateUpdated
+      ? format(dateUpdated, 'MMM d, yyyy')
+      : undefined;
 
   const onFavoriteAddClick = useCallback(() => addFavoriteRepo(id), [id, addFavoriteRepo]);
 
@@ -51,7 +53,7 @@ const RepoItem = ({ description, forks_count, html_url, id, language, name, star
             <ForkIcon /> {forks_count}
           </span>
         )}
-        <span>Updated: {updatedToRender}</span>
+        {updatedToRender && <span>Updated: {updatedToRender}</span>}
       </div>
     </li>
   );

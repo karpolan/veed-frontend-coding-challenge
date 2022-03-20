@@ -12,7 +12,6 @@ export function localStorageGet(name, defaultValue = '') {
     }
   } catch (error) {}
 
-  // console.log(`localStorageGet(${name}) - result:`, valueFromStore)
   return valueFromStore; // Return string value as it is
 }
 
@@ -32,14 +31,12 @@ export function localStorageSet(name, value) {
   }
 
   localStorage.setItem(name, valueAsString);
-  // console.log(`localStorageSet(${name}, ${valueAsString})`);
 }
 
 /**
  * Deletes value by name from localStorage, if specified name is empty the localStorage is cleared.
  */
 export function localStorageDelete(name) {
-  // console.log(`localStorageDelete(${name})`);
   if (name) {
     localStorage.removeItem(name);
   } else {
