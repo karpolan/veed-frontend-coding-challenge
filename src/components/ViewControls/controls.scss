@@ -1,0 +1,30 @@
+.filter {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem; // Space between each filter
+
+  .textSearch {
+    flex-grow: 1;
+  }
+
+  .order,
+  .sort,
+  .textSearch {
+    display: flex;
+    flex-direction: row;
+
+    label {
+      margin-right: 0.5rem;
+    }
+
+    input[type='text'] {
+      min-width: 4rem;
+      flex-grow: 1; // Full width
+    }
+
+    select {
+      min-width: 4rem;
+    }
+  }
+}

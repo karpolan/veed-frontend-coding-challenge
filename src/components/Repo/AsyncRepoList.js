@@ -9,7 +9,11 @@ const AsyncRepoList = ({ repoIds }) => {
   return !repoIds?.length ? (
     <p>No repositories found...</p>
   ) : (
-    repoIds?.map((current) => <AsyncRepoItem key={current} id={current} />)
+    <ul>
+      {repoIds?.map((current) => (
+        <AsyncRepoItem key={current} id={current} />
+      ))}
+    </ul>
   );
 };
 

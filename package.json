@@ -1,7 +1,7 @@
 {
   "name": "veed-frontend-coding-challenge",
   "description": "Frontend Coding Challenge for Veed.io",
-  "version": "0.1.2",
+  "version": "0.2.4",
   "private": true,
   "dependencies": {
     "date-fns": "latest",
@@ -15,7 +15,8 @@
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "prettier": "latest",
-    "prop-types": "latest"
+    "prop-types": "latest",
+    "sass": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

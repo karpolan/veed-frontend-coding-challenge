@@ -9,7 +9,11 @@ const RepoList = ({ repos }) => {
   return !repos?.length ? (
     <p>No repositories found...</p>
   ) : (
-    repos?.map((current) => <RepoItem key={current.id} {...current} />)
+    <ul>
+      {repos?.map((current) => (
+        <RepoItem key={current.id} {...current} />
+      ))}
+    </ul>
   );
 };
 

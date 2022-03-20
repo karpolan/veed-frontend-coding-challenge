@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useGitHubSearchRepos } from '../hooks';
-import RepoList from './RepoList';
+import { useGitHubSearchRepos } from '../../hooks';
+import { RepoList } from '../Repo';
 
 /**
  * Renders list of repos filtered and sorted by given criteria
@@ -18,7 +18,8 @@ const FilteredRepoList = ({ order, sort, textSearch }) => {
     setFilteredRepos(
       textSearch
         ? repos.filter(
-            ({ name, description }) =>
+            ({ name, description, language }) =>
+              language?.toLowerCase().includes(textSearchLowerCase) ||
               name?.toLowerCase().includes(textSearchLowerCase) ||
               description?.toLowerCase().includes(textSearchLowerCase)
           )

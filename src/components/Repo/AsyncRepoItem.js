@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useGitHubSingleRepo } from '../hooks';
+import { useGitHubSingleRepo } from '../../hooks';
 import RepoItem from './RepoItem';
 
 /**

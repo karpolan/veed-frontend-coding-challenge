@@ -1,0 +1,15 @@
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.info {
+  vertical-align: middle;
+}
+
+.info span {
+  margin-right: 1rem;
+}
