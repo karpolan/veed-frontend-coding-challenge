@@ -18,7 +18,8 @@ const FilteredRepoList = ({ order, sort, textSearch }) => {
     setFilteredRepos(
       textSearch
         ? repos.filter(
-            ({ name, description }) =>
+            ({ name, description, language }) =>
+              language?.toLowerCase().includes(textSearchLowerCase) ||
               name?.toLowerCase().includes(textSearchLowerCase) ||
               description?.toLowerCase().includes(textSearchLowerCase)
           )
