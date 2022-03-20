@@ -8,8 +8,8 @@ import './controls.scss';
 const FilterForRepos = ({ order, sort, textSearch, onOrderChange, onSortChange, onTextSearchChange }) => {
   return (
     <div className="filter">
-      <div className="textSearch">
-        <label>Search for</label>
+      <div className="textSearch" title="Applied to name, description, language and so on.">
+        <label>Filter by</label>
         <input type="text" value={textSearch} onChange={onTextSearchChange} />
       </div>
 
