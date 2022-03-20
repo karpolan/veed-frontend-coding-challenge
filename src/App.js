@@ -1,17 +1,19 @@
 import { FavoriteReposProvider } from './components/FavoriteReposContext';
-import FavoriteRepos from './views/FavoriteRepos';
-import LatestReleases from './views/LatestReleases';
+import TabView from './views/TabView';
+import './App.css'; // Shared across App CSS styles
 
 /**
  * Main Application component
+ * Note: using of global CSS styles in this component just for demo purposes
  */
 const App = () => {
   return (
     <FavoriteReposProvider>
-      <header>GitHub Trends</header>
+      <header>
+        <h1>GitHub Trends</h1>
+      </header>
       <main>
-        <FavoriteRepos />
-        <LatestReleases />
+        <TabView />
       </main>
       <footer>
         Copyright &copy; {new Date().getFullYear()}{' '}

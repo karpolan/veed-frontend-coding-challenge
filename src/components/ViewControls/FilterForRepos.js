@@ -1,18 +1,20 @@
 import PropTypes from 'prop-types';
+import './controls.scss';
 
 /**
  * Renders set of controls to perform the text search, to choose the sorting method and to choose the order of sorting
+ * Note: using of SCSS styles in this component just for demo purposes
  */
-const Filter = ({ order, sort, textSearch, onOrderChange, onSortChange, onTextSearchChange }) => {
+const FilterForRepos = ({ order, sort, textSearch, onOrderChange, onSortChange, onTextSearchChange }) => {
   return (
-    <div>
-      <label>
-        Search for
+    <div className="filter">
+      <div className="textSearch">
+        <label>Search for</label>
         <input type="text" value={textSearch} onChange={onTextSearchChange} />
-      </label>
+      </div>
 
-      <label>
-        Sort by
+      <div className="sort">
+        <label>Sort by</label>
         <select value={sort} onChange={onSortChange}>
           <option value="">Best match</option>
           <option value="stars">Stars</option>
@@ -22,20 +24,20 @@ const Filter = ({ order, sort, textSearch, onOrderChange, onSortChange, onTextSe
           <option value="created">Create date</option>
           <option value="updated">Update date</option>
         </select>
-      </label>
+      </div>
 
-      <label>
-        Order by
+      <div className="order">
+        <label>Order by</label>
         <select value={order} onChange={onOrderChange}>
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
-      </label>
+      </div>
     </div>
   );
 };
 
-Filter.propTypes = {
+FilterForRepos.propTypes = {
   order: PropTypes.string,
   sort: PropTypes.string,
   textSearch: PropTypes.string,
@@ -44,4 +46,4 @@ Filter.propTypes = {
   onTextSearchChange: PropTypes.func,
 };
 
-export default Filter;
+export default FilterForRepos;
