@@ -1,8 +1,20 @@
 {
   "name": "veed-frontend-coding-challenge",
   "description": "Frontend Coding Challenge for Veed.io",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": true,
+  "author": {
+    "name": "Anton Karpenko",
+    "email": "i@karpolan.com",
+    "url": "https://karpolan.com"
+  },
+  "keywords": [
+    "example",
+    "react",
+    "javascript",
+    "api",
+    "github api"
+  ],
   "dependencies": {
     "date-fns": "latest",
     "react": "latest",
@@ -21,8 +33,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "lint": "node_modules/.bin/eslint --ext js src",
+    "format": "node_modules/.bin/prettier src --write",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
