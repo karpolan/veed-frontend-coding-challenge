@@ -19,7 +19,7 @@ const styleTabSelected = {
  * Note: using of inline styles in this component just for demo purposes
  */
 const TabView = () => {
-  const [tabIndex, setTabIndex] = useLocalStorage('tab', 0);
+  const [tabIndex, setTabIndex] = useLocalStorage('tab', '0');
 
   const onTabChange = (event) => {
     setTabIndex(event?.target?.value);
