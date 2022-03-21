@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './controls.scss';
+import './controls.scss'; // Styles for ViewControls only
 
 /**
  * Renders set of controls to perform the text search, to choose the sorting method and to choose the order of sorting
