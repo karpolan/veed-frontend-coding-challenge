@@ -12,7 +12,7 @@ describe('App component', () => {
     expect(footer).toBeInTheDocument();
   });
 
-  test('shoes current year in the copyright', () => {
+  test('shows current year in the copyright', () => {
     render(<App />);
     const copyright = screen.getByText(/Copyright/i);
     const currentYear = new Date().getFullYear();
