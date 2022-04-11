@@ -16,7 +16,7 @@ GitHub provides a public search endpoint which you can use for fetching the most
 
 `https://api.github.com/search/repositories?q=created:>2017-01-10&sort=stars&order=desc`
 
-We value: clear, easy to understand code, use of semantic HTML, CSS naming conventions and tests. The technology you use is up to you, but we work with React so seeing this i
+We value: clear, easy to understand code, use of semantic HTML, CSS naming conventions and tests. The technology you use is up to you, but we work with React so seeing this in the solution is always great as well. Have fun!
 
 ## Created using reate React App
 
